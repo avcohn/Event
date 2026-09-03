@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#C1432E">
+<title>ראש השנה | משפחת כהן</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍎</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500;700;900&family=Assistant:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF5E9;
+    --cream-2:#F5EBD8;
+    --apple:#C1432E;
+    --apple-dark:#9C3423;
+    --honey:#C98A2C;
+    --honey-light:#EAC978;
+    --sage:#7C8E6A;
+    --sage-light:#E4EADB;
+    --ink:#2B2620;
+    --ink-soft:#6B6355;
+    --white:#FFFFFF;
+    --line:#E8DFC9;
+    --radius-lg:22px;
+    --radius-md:14px;
+    --radius-sm:9px;
+    --shadow:0 10px 30px -14px rgba(43,38,32,.22);
+    --shadow-sm:0 4px 14px -8px rgba(43,38,32,.2);
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  html,body{margin:0;padding:0;}
+  body{
+    font-family:'Assistant',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    min-height:100vh;
+    padding-bottom:86px;
+    background-image:
+      radial-gradient(circle at 92% 4%, rgba(201,138,44,.10), transparent 40%),
+      radial-gradient(circle at 4% 96%, rgba(124,142,106,.12), transparent 42%);
+    background-attachment:fixed;
+  }
+  h1,h2,h3,.serif{font-family:'Frank Ruhl Libre',serif;}
+  h1,h2,h3{margin:0; color:var(--ink);}
+  button{font-family:inherit; cursor:pointer;}
+  input,select,textarea{font-family:inherit;}
+  .hidden{display:none !important;}
+  a{color:inherit;}
+
+  /* ---------- Splash ---------- */
+  #splash{
+    position:fixed; inset:0; z-index:200;
+    background:linear-gradient(160deg,var(--apple) 0%, var(--apple-dark) 55%, #7a2416 100%);
+    color:#fff; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:32px; gap:14px;
+  }
+  #splash .emoji{font-size:64px; filter:drop-shadow(0 8px 18px rgba(0,0,0,.25));}
+  #splash h1{font-size:34px; color:#fff; font-weight:700;}
+  #splash .sub{font-size:16px; color:#fff; opacity:.85; font-weight:700; margin-top:-8px;}
+  #splash .quote{max-width:320px; font-size:14px; opacity:.8; line-height:1.6; margin-top:6px;}
+  #splash button{
+    margin-top:18px; background:var(--honey-light); color:#3a2a05; border:none;
+    padding:14px 30px; border-radius:999px; font-size:16px; font-weight:800;
+    box-shadow:0 10px 24px -8px rgba(0,0,0,.4);
+  }
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:40;
+    background:rgba(251,245,233,.92); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:14px 18px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .topbar .title{font-size:20px; font-weight:700; display:flex; align-items:center; gap:8px;}
+  .sync-pill{
+    font-size:11.5px; color:var(--ink-soft); background:var(--white); border:1px solid var(--line);
+    padding:5px 11px; border-radius:999px; display:flex; align-items:center; gap:6px;
+  }
+  .sync-pill .dot{width:7px;height:7px;border-radius:50%; background:var(--sage);}
+  .sync-pill.err .dot{background:var(--apple);}
+  .sync-pill button{background:none;border:none;font-size:13px;color:var(--ink-soft);padding:0 0 0 4px;}
+
+  main{max-width:640px; margin:0 auto; padding:18px 16px 20px;}
+  .screen{display:none;}
+  .screen.active{display:block;}
+
+  /* ---------- Dashboard ---------- */
+  .hero{
+    background:linear-gradient(135deg,var(--apple) 0%, var(--apple-dark) 100%);
+    color:#fff; border-radius:var(--radius-lg); padding:26px 22px 22px; position:relative; overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .hero:before{content:"🍯"; position:absolute; font-size:120px; opacity:.13; left:-18px; bottom:-30px; transform:rotate(-12deg);}
+  .hero:after{content:"🍎"; position:absolute; font-size:80px; opacity:.15; right:-6px; top:-14px; transform:rotate(14deg);}
+  .hero h1{color:#fff; font-size:26px; position:relative; z-index:1;}
+  .hero p{position:relative; z-index:1; margin:6px 0 0; opacity:.88; font-size:14.5px;}
+
+  .stat-row{display:grid; grid-template-columns:1.3fr 1fr; gap:10px; margin-top:14px;}
+  .stat-card{
+    background:var(--white); border-radius:var(--radius-md); padding:14px 16px; box-shadow:var(--shadow-sm);
+    border:1px solid var(--line);
+  }
+  .stat-card.wide{grid-column:1 / -1; display:flex; align-items:center; justify-content:space-between;}
+  .stat-num{font-family:'Frank Ruhl Libre',serif; font-size:26px; font-weight:700; color:var(--apple);}
+  .stat-label{font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+  .stat-card.small .stat-num{color:var(--sage);}
+  .progress-mini{flex:1; height:8px; background:var(--sage-light); border-radius:99px; margin-right:14px; overflow:hidden;}
+  .progress-mini > div{height:100%; background:var(--sage); border-radius:99px; transition:width .4s;}
+
+  .section-head{display:flex; align-items:baseline; justify-content:space-between; margin:26px 0 10px;}
+  .section-head h2{font-size:19px;}
+  .section-head .link-btn{font-size:13px; color:var(--apple); font-weight:600; background:none; border:none;}
+
+  .cat-scroll{display:flex; gap:8px; overflow-x:auto; padding-bottom:4px; margin-bottom:4px;}
+  .cat-chip{
+    flex:0 0 auto; background:var(--white); border:1px solid var(--line); border-radius:999px;
+    padding:9px 14px; font-size:13px; font-weight:600; color:var(--ink-soft); white-space:nowrap;
+  }
+  .cat-chip .n{color:var(--apple); font-weight:800;}
+
+  .dish-preview-list{display:flex; flex-direction:column; gap:8px;}
+  .dish-preview{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius-md);
+    padding:12px 14px; display:flex; align-items:center; gap:12px; box-shadow:var(--shadow-sm);
+  }
+  .dish-preview .ico{font-size:22px;}
+  .dish-preview .info{flex:1; min-width:0;}
+  .dish-preview .name{font-weight:700; font-size:14.5px;}
+  .dish-preview .who{font-size:12px; color:var(--ink-soft); margin-top:1px;}
+
+  .empty{
+    text-align:center; padding:34px 20px; color:var(--ink-soft); background:var(--white);
+    border:1px dashed var(--line); border-radius:var(--radius-md); font-size:14px;
+  }
+  .empty .big{font-size:30px; display:block; margin-bottom:8px;}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:6px;
+    border:none; border-radius:999px; padding:13px 20px; font-size:15px; font-weight:700;
+  }
+  .btn-primary{background:var(--apple); color:#fff; box-shadow:0 8px 18px -8px rgba(193,67,46,.55);}
+  .btn-primary:active{transform:scale(.98);}
+  .btn-outline{background:var(--white); color:var(--ink); border:1px solid var(--line);}
+  .btn-block{width:100%;}
+  .btn-sage{background:var(--sage); color:#fff;}
+  .fab-row{display:flex; margin-top:18px;}
+
+  /* ---------- Menu screen ---------- */
+  .menu-header h2{font-size:22px;}
+  .menu-header p{color:var(--ink-soft); font-size:13.5px; margin:4px 0 16px;}
+  .filter-chips{display:flex; gap:8px; overflow-x:auto; margin-bottom:14px;}
+  .filter-chip{
+    flex:0 0 auto; padding:8px 15px; border-radius:999px; font-size:13px; font-weight:700;
+    background:var(--white); border:1px solid var(--line); color:var(--ink-soft);
+  }
+  .filter-chip.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+
+  .dish-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius-md);
+    margin-bottom:12px; box-shadow:var(--shadow-sm); overflow:hidden;
+  }
+  .dish-card-top{padding:15px 16px; display:flex; align-items:center; gap:12px; cursor:pointer;}
+  .dish-card-top .ico{font-size:24px; flex:0 0 auto;}
+  .dish-card-top .info{flex:1; min-width:0;}
+  .dish-card-top .name{font-weight:700; font-size:15.5px;}
+  .dish-card-top .meta{font-size:12.5px; color:var(--ink-soft); margin-top:2px;}
+  .dish-card-top .chev{color:var(--ink-soft); transition:transform .2s; font-size:13px;}
+  .dish-card.open .chev{transform:rotate(180deg);}
+  .dish-card-body{max-height:0; overflow:hidden; transition:max-height .25s ease;}
+  .dish-card.open .dish-card-body{max-height:900px;}
+  .dish-card-inner{padding:0 16px 14px;}
+  .ing-row{display:flex; align-items:center; gap:8px; padding:6px 0; font-size:13.5px; border-top:1px solid var(--cream-2);}
+  .ing-row:first-child{border-top:none;}
+  .ing-row .tag{font-size:10.5px; padding:2px 7px; border-radius:99px; font-weight:700;}
+  .tag.buy{background:#FBE3DC; color:var(--apple-dark);}
+  .tag.home{background:var(--sage-light); color:#4b5e3a;}
+  .dish-notes{font-size:12.5px; color:var(--ink-soft); background:var(--cream-2); padding:8px 10px; border-radius:var(--radius-sm); margin-top:8px;}
+  .dish-actions{display:flex; gap:8px; margin-top:12px;}
+  .dish-actions button{
+    flex:1; background:var(--cream-2); border:none; border-radius:var(--radius-sm); padding:9px; font-size:13px; font-weight:700; color:var(--ink);
+  }
+  .dish-actions button.danger{color:var(--apple);}
+
+  .cat-group-title{font-size:13px; font-weight:800; color:var(--ink-soft); margin:20px 0 8px; display:flex; align-items:center; gap:6px;}
+
+  /* ---------- Shopping ---------- */
+  .shop-header{position:sticky; top:57px; z-index:20; background:var(--cream); padding-top:2px; padding-bottom:10px; margin-top:-6px;}
+  .progress-block{background:var(--white); border:1px solid var(--line); border-radius:var(--radius-md); padding:14px 16px; box-shadow:var(--shadow-sm);}
+  .progress-block .row{display:flex; justify-content:space-between; font-size:13.5px; font-weight:700; margin-bottom:8px;}
+  .progress-bar-outer{height:10px; background:var(--sage-light); border-radius:99px; overflow:hidden;}
+  .progress-bar-inner{height:100%; background:linear-gradient(90deg,var(--sage),#98A986); border-radius:99px; transition:width .4s;}
+
+  .cat-group{margin-top:18px;}
+  .shop-item{
+    display:flex; align-items:flex-start; gap:12px; background:var(--white); border:1px solid var(--line);
+    border-radius:var(--radius-sm); padding:12px 12px; margin-bottom:8px; box-shadow:var(--shadow-sm);
+  }
+  .shop-item.done{opacity:.55;}
+  .shop-item.done .item-name{text-decoration:line-through; color:var(--ink-soft);}
+  .checkbox{
+    width:26px; height:26px; border-radius:8px; border:2px solid var(--sage); flex:0 0 auto; margin-top:1px;
+    display:flex; align-items:center; justify-content:center; font-size:16px; color:#fff; background:#fff;
+  }
+  .shop-item.done .checkbox{background:var(--sage);}
+  .item-body{flex:1; min-width:0;}
+  .item-name{font-weight:700; font-size:14.5px;}
+  .item-sub{font-size:12px; color:var(--ink-soft); margin-top:2px;}
+  .item-tags{display:flex; gap:6px; margin-top:5px; flex-wrap:wrap;}
+  .mini-tag{font-size:10.5px; padding:2px 7px; border-radius:99px; background:var(--cream-2); color:var(--ink-soft); font-weight:700;}
+  .item-edit{background:none; border:none; color:var(--ink-soft); font-size:15px; padding:4px;}
+
+  /* ---------- Admin ---------- */
+  .admin-card{background:var(--white); border:1px solid var(--line); border-radius:var(--radius-md); padding:16px; margin-bottom:14px; box-shadow:var(--shadow-sm);}
+  .admin-card h3{font-size:15.5px; margin-bottom:4px;}
+  .admin-card p{font-size:13px; color:var(--ink-soft); margin:0 0 12px;}
+  .admin-card .btn{width:100%;}
+  .field-group{margin-bottom:14px;}
+  .field-group label{display:block; font-size:12.5px; font-weight:700; color:var(--ink-soft); margin-bottom:5px;}
+  .field-group input, .field-group textarea{
+    width:100%; border:1px solid var(--line); border-radius:var(--radius-sm); padding:11px 12px; font-size:14.5px; background:var(--white);
+  }
+
+  /* ---------- Nav ---------- */
+  nav.bottom-nav{
+    position:fixed; bottom:0; right:0; left:0; z-index:60;
+    background:rgba(255,255,255,.96); backdrop-filter:blur(10px);
+    border-top:1px solid var(--line); display:flex; padding:8px 6px calc(8px + env(safe-area-inset-bottom));
+  }
+  nav.bottom-nav button{
+    flex:1; background:none; border:none; display:flex; flex-direction:column; align-items:center; gap:3px;
+    font-size:11px; font-weight:700; color:var(--ink-soft); padding:6px 0; border-radius:12px;
+  }
+  nav.bottom-nav button .ic{font-size:20px;}
+  nav.bottom-nav button.active{color:var(--apple);}
+  nav.bottom-nav button.active .ic{transform:translateY(-1px);}
+
+  /* ---------- Modal ---------- */
+  .modal-overlay{
+    position:fixed; inset:0; background:rgba(43,38,32,.5); z-index:100; display:flex; align-items:flex-end; justify-content:center;
+  }
+  .modal{
+    background:var(--cream); width:100%; max-width:640px; max-height:92vh; overflow-y:auto;
+    border-radius:22px 22px 0 0; padding:20px 18px calc(24px + env(safe-area-inset-bottom));
+    animation:slideUp .22s ease;
+  }
+  @keyframes slideUp{from{transform:translateY(30px); opacity:0;} to{transform:translateY(0); opacity:1;}}
+  .modal-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:16px;}
+  .modal-head h2{font-size:19px;}
+  .modal-head button{background:var(--white); border:1px solid var(--line); width:34px; height:34px; border-radius:50%; font-size:16px; color:var(--ink-soft);}
+  .ing-edit-row{display:grid; grid-template-columns:1fr 68px 78px auto; gap:6px; align-items:center; margin-bottom:8px;}
+  .ing-edit-row input, .ing-edit-row select{padding:9px 8px; border:1px solid var(--line); border-radius:9px; font-size:13px;}
+  .ing-toggle{
+    border:1px solid var(--line); border-radius:9px; padding:8px 4px; font-size:11px; font-weight:700; background:var(--white); color:var(--ink-soft);
+  }
+  .ing-toggle.buy{background:#FBE3DC; color:var(--apple-dark); border-color:#F1C5B7;}
+  .ing-toggle.home{background:var(--sage-light); color:#4b5e3a; border-color:#c9dab8;}
+  .ing-del{background:none; border:none; color:var(--ink-soft); font-size:17px;}
+  .add-ing-btn{width:100%; padding:11px; border:1.5px dashed var(--line); background:none; border-radius:var(--radius-sm); font-size:13.5px; font-weight:700; color:var(--ink-soft); margin-top:2px;}
+
+  .toast{
+    position:fixed; bottom:100px; right:50%; transform:translateX(50%); background:var(--ink); color:#fff;
+    padding:11px 20px; border-radius:999px; font-size:13.5px; z-index:150; box-shadow:var(--shadow); max-width:88%; text-align:center;
+  }
+
+  ::selection{background:var(--honey-light);}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+</style>
+</head>
+<body>
+
+<div id="splash">
+  <div class="emoji">🍎</div>
+  <h1>ראש השנה</h1>
+  <div class="sub">משפחת כהן</div>
+  <div class="quote">"שנהיה לראש ולא לזנב — ושלא נגלה בסופר ששכחנו משהו."</div>
+  <button onclick="closeSplash()">יאללה, מתחילים 🍯</button>
+</div>
+
+<header class="topbar">
+  <div class="title">🍯 ראש השנה תשפ״ז</div>
+  <div class="sync-pill" id="syncPill"><span class="dot"></span><span id="syncText">מסונכרן</span><button onclick="syncNow(true)" title="סנכרון">↻</button></div>
+</header>
+
+<main>
+
+  <!-- DASHBOARD -->
+  <section class="screen active" id="screen-home">
+    <div class="hero">
+      <h1>משפחת כהן מתכוננת לחג</h1>
+      <p id="heroSub">עדכון אחרון: —</p>
+    </div>
+    <div class="stat-row">
+      <div class="stat-card wide">
+        <div>
+          <div class="stat-num" id="dashPurchased">0/0</div>
+          <div class="stat-label">מוצרים נרכשו</div>
+        </div>
+        <div class="progress-mini"><div id="dashProgressBar" style="width:0%"></div></div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="dashDishCount">0</div>
+        <div class="stat-label">מנות מתוכננות</div>
+      </div>
+      <div class="stat-card small">
+        <div class="stat-num" id="dashRemaining">0</div>
+        <div class="stat-label">נשאר לקנות</div>
+      </div>
+    </div>
+
+    <div class="section-head"><h2>התפריט שלנו</h2><button class="link-btn" onclick="goTo('menu')">לכל המנות ←</button></div>
+    <div class="cat-scroll" id="dashCatScroll"></div>
+    <div class="dish-preview-list" id="dashDishPreview"></div>
+
+    <div class="fab-row"><button class="btn btn-primary btn-block" onclick="openDishModal()">＋ הוספת מנה</button></div>
+  </section>
+
+  <!-- MENU -->
+  <section class="screen" id="screen-menu">
+    <div class="menu-header">
+      <h2>🍽️ התפריט</h2>
+      <p>מה מכינים, מי אחראי, ומה צריך בשביל כל מנה</p>
+    </div>
+    <div class="filter-chips" id="menuFilters"></div>
+    <div id="menuList"></div>
+    <div class="fab-row"><button class="btn btn-primary btn-block" onclick="openDishModal()">＋ הוספת מנה</button></div>
+  </section>
+
+  <!-- SHOPPING -->
+  <section class="screen" id="screen-shop">
+    <div class="shop-header">
+      <h2 style="font-size:22px; margin-bottom:10px;">🛒 הקניות שלנו</h2>
+      <div class="progress-block">
+        <div class="row"><span id="shopProgressText">נרכשו 0 מתוך 0 מוצרים</span><span id="shopProgressPct">0%</span></div>
+        <div class="progress-bar-outer"><div class="progress-bar-inner" id="shopProgressBar" style="width:0%"></div></div>
+      </div>
+      <div class="filter-chips" style="margin-top:12px;">
+        <button class="filter-chip active" data-shopfilter="remaining" onclick="setShopFilter('remaining')">נשאר לקנות</button>
+        <button class="filter-chip" data-shopfilter="all" onclick="setShopFilter('all')">הכול</button>
+        <button class="filter-chip" data-shopfilter="done" onclick="setShopFilter('done')">נקנה</button>
+      </div>
+    </div>
+    <div id="shopList"></div>
+    <div class="fab-row"><button class="btn btn-outline btn-block" onclick="openGeneralModal()">＋ הוסף מוצר לרשימה</button></div>
+  </section>
+
+  <!-- ADMIN -->
+  <section class="screen" id="screen-admin">
+    <div class="menu-header">
+      <h2>⚙️ ניהול</h2>
+      <p>הגדרות, איפוס וגיבוי</p>
+    </div>
+
+    <div class="admin-card">
+      <h3>חיבור ל-Google Sheets</h3>
+      <p>הדביקו כאן את כתובת ה-Web App שקיבלתם מ-Google Apps Script (ראו README).</p>
+      <div class="field-group"><input id="apiUrlInput" placeholder="https://script.google.com/macros/s/..."></div>
+      <button class="btn btn-primary" onclick="saveApiUrl()">שמירת כתובת וסנכרון</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>איפוס סימוני קניות</h3>
+      <p>כל המוצרים יחזרו למצב "לא נקנה". המוצרים עצמם לא יימחקו.</p>
+      <button class="btn btn-outline" onclick="resetPurchased()">איפוס סימונים</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>ייצוא לוואטסאפ</h3>
+      <p>מעתיק את רשימת הקניות הנוכחית כטקסט מוכן לשליחה.</p>
+      <button class="btn btn-sage" onclick="exportWhatsapp()">העתקת רשימת קניות</button>
+    </div>
+
+    <div class="admin-card">
+      <h3>מחיקת כל הרשימה</h3>
+      <p>פעולה זו מוחקת את כל המנות, המצרכים והקניות הכלליות. לא ניתן לבטל.</p>
+      <button class="btn btn-outline" style="color:var(--apple); border-color:#F1C5B7;" onclick="clearAllData()">מחיקת הכול</button>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom-nav">
+  <button data-screen="home" class="active" onclick="goTo('home')"><span class="ic">🏠</span>ראשי</button>
+  <button data-screen="menu" onclick="goTo('menu')"><span class="ic">🍽️</span>תפריט</button>
+  <button data-screen="shop" onclick="goTo('shop')"><span class="ic">🛒</span>קניות</button>
+  <button data-screen="admin" onclick="goTo('admin')"><span class="ic">⚙️</span>ניהול</button>
+</nav>
+
+<div id="modalRoot"></div>
+<div id="toastRoot"></div>
+
+<script>
+/* =========================================================
+   ראש השנה | משפחת כהן — App logic
+   Data model kept in-memory + localStorage cache, synced
+   with a Google Apps Script Web App (acting as REST API
+   over a Google Sheet).
+   ========================================================= */
+
+const LS_KEY = 'rh_family_cohen_v1';
+const LS_URL_KEY = 'rh_api_url_v1';
+const CATS = [
+  {id:'fish', label:'דגים', ico:'🐟'},
+  {id:'meat', label:'בשרים', ico:'🥩'},
+  {id:'chicken', label:'עוף', ico:'🍗'},
+  {id:'sides', label:'תוספות', ico:'🍚'},
+  {id:'salads', label:'סלטים', ico:'🥗'},
+  {id:'bread', label:'לחמים וחלות', ico:'🥖'},
+  {id:'dessert', label:'קינוחים', ico:'🍰'},
+  {id:'simanim', label:'סימני החג', ico:'🍎'},
+  {id:'drinks', label:'שתייה', ico:'🥤'},
+  {id:'other', label:'אחר', ico:'🍷'}
+];
+const SHOP_CATS = [
+  {id:'produce', label:'ירקות ופירות', ico:'🥬'},
+  {id:'meatfish', label:'בשר ודגים', ico:'🥩'},
+  {id:'dairy', label:'מוצרי חלב', ico:'🥛'},
+  {id:'pantry', label:'מזווה', ico:'🥫'},
+  {id:'bakery', label:'מאפים', ico:'🍞'},
+  {id:'drinks', label:'שתייה', ico:'🥤'},
+  {id:'frozen', label:'קפואים', ico:'🧊'},
+  {id:'household', label:'ניקיון ובית', ico:'🧹'},
+  {id:'disposable', label:'חד־פעמי ואירוח', ico:'🍽️'},
+  {id:'other', label:'אחר', ico:'🛍️'}
+];
+const RESPONSIBLE = ['אבי','אלינור','משפחת מור','אלבו הגדול','משפחת כהן','הרמלין–אלבו','אחר'];
+
+let state = { dishes: [], ingredients: [], general: [], lastSync: null };
+const DEFAULT_API_URL = 'https://script.google.com/macros/s/AKfycbzkfPfApaytH65VGrD7C9hqWyj17xyb6nEMCZ9sb59Jdw5GjYy0CmfK7E9TVFYgK-7M/exec';
+let apiUrl = localStorage.getItem(LS_URL_KEY) || DEFAULT_API_URL;
+let menuFilter = 'all';
+let shopFilter = 'remaining';
+let openDishId = null;
+let syncing = false;
+
+function uid(){ return Date.now().toString(36) + Math.random().toString(36).slice(2,7); }
+function nowIso(){ return new Date().toISOString(); }
+
+/* ---------- persistence ---------- */
+function loadLocal(){
+  try{
+    const raw = localStorage.getItem(LS_KEY);
+    if(raw) state = JSON.parse(raw);
+  }catch(e){ console.warn('local load failed', e); }
+  if(!state.dishes) state = { dishes: [], ingredients: [], general: [], lastSync: null };
+}
+function saveLocal(){
+  localStorage.setItem(LS_KEY, JSON.stringify(state));
+}
+
+/* ---------- seed data (first run only) ---------- */
+function seedIfEmpty(){
+  if(state.dishes.length || state.general.length) return;
+  const seed = [
+    ['fish','דגים מרוקאיים','משפחת מור'],
+    ['chicken','עוף ותפוחי אדמה','אלבו הגדול'],
+    ['salads','חציל במיונז','אלבו הגדול'],
+    ['bread','חלות','משפחת כהן'],
+    ['other','ממולאים – עלי גפן וחצילים','משפחת כהן'],
+    ['salads','סלטים','משפחת כהן'],
+    ['dessert','קינוח','משפחת כהן'],
+    ['meat','בשר','הרמלין–אלבו'],
+    ['sides','אורז של השמחות','הרמלין–אלבו'],
+    ['simanim','סימני החג','משפחת כהן'],
+  ];
+  seed.forEach(([category,name,responsible])=>{
+    state.dishes.push({id:uid(), name, category, responsible, notes:'', createdAt:nowIso(), updatedAt:nowIso()});
+  });
+  saveLocal();
+}
+
+/* ---------- derived data ---------- */
+function ingredientsFor(dishId){ return state.ingredients.filter(i=>i.dishId===dishId); }
+function dishById(id){ return state.dishes.find(d=>d.id===id); }
+
+function shoppingUnits(){
+  // ingredients marked "need to buy" + general items, merged by name+unit when identical
+  const buyIngs = state.ingredients.filter(i=>!i.haveAtHome);
+  const merged = {}; // key: name|unit
+  buyIngs.forEach(ing=>{
+    const key = (ing.name||'').trim().toLowerCase()+'|'+(ing.unit||'');
+    if(!merged[key]){
+      merged[key] = {
+        id:'ing:'+key, type:'ingredient', name:ing.name, unit:ing.unit,
+        quantity:0, category:ing.shoppingCategory||'other', sources:[], purchased:false,
+        purchasedBy:null, purchasedAt:null, refIds:[]
+      };
+    }
+    merged[key].quantity += (Number(ing.quantity)||0);
+    const dish = dishById(ing.dishId);
+    if(dish && !merged[key].sources.includes(dish.name)) merged[key].sources.push(dish.name);
+    merged[key].refIds.push(ing.id);
+    if(ing.purchased){ merged[key].purchased = true; merged[key].purchasedBy = ing.purchasedBy; merged[key].purchasedAt = ing.purchasedAt; }
+  });
+  const genItems = state.general.map(g=>({
+    id:'gen:'+g.id, type:'general', name:g.name, unit:g.unit, quantity:g.quantity,
+    category:g.category||'other', sources:[], purchased:!!g.purchased,
+    purchasedBy:g.purchasedBy, purchasedAt:g.purchasedAt, refIds:[g.id]
+  }));
+  return [...Object.values(merged), ...genItems];
+}
+
+/* ---------- rendering: dashboard ---------- */
+function renderDashboard(){
+  const units = shoppingUnits();
+  const purchased = units.filter(u=>u.purchased).length;
+  document.getElementById('dashPurchased').textContent = purchased+'/'+units.length;
+  document.getElementById('dashProgressBar').style.width = units.length ? (purchased/units.length*100)+'%' : '0%';
+  document.getElementById('dashDishCount').textContent = state.dishes.length;
+  document.getElementById('dashRemaining').textContent = units.length - purchased;
+  document.getElementById('heroSub').textContent = state.lastSync ? 'עדכון אחרון: ' + fmtTime(state.lastSync) : 'טרם סונכרן';
+
+  const scroll = document.getElementById('dashCatScroll');
+  scroll.innerHTML = CATS.map(c=>{
+    const n = state.dishes.filter(d=>d.category===c.id).length;
+    if(!n) return '';
+    return `<div class="cat-chip">${c.ico} ${c.label} <span class="n">${n}</span></div>`;
+  }).join('') || '<div class="cat-chip">עדיין אין מנות</div>';
+
+  const list = document.getElementById('dashDishPreview');
+  if(!state.dishes.length){
+    list.innerHTML = `<div class="empty"><span class="big">🍽️</span>עדיין לא הוספתם מנות לתפריט</div>`;
+  } else {
+    list.innerHTML = state.dishes.slice(0,5).map(d=>{
+      const cat = CATS.find(c=>c.id===d.category) || CATS[CATS.length-1];
+      return `<div class="dish-preview"><div class="ico">${cat.ico}</div><div class="info"><div class="name">${esc(d.name)}</div><div class="who">${esc(d.responsible||'—')}</div></div></div>`;
+    }).join('');
+  }
+}
+
+/* ---------- rendering: menu ---------- */
+function renderMenuFilters(){
+  const el = document.getElementById('menuFilters');
+  const chips = [{id:'all', label:'הכול'}, ...CATS];
+  el.innerHTML = chips.map(c=>{
+    const active = menuFilter===c.id ? 'active' : '';
+    return `<button class="filter-chip ${active}" onclick="setMenuFilter('${c.id}')">${c.ico?c.ico+' ':''}${c.label}</button>`;
+  }).join('');
+}
+function setMenuFilter(id){ menuFilter=id; renderMenuFilters(); renderMenu(); }
+
+function renderMenu(){
+  const list = document.getElementById('menuList');
+  let dishes = state.dishes;
+  if(menuFilter!=='all') dishes = dishes.filter(d=>d.category===menuFilter);
+  if(!dishes.length){
+    list.innerHTML = `<div class="empty"><span class="big">🍽️</span>אין מנות בקטגוריה הזאת עדיין</div>`;
+    return;
+  }
+  // group by category for readability when "all"
+  if(menuFilter==='all'){
+    list.innerHTML = CATS.map(cat=>{
+      const inCat = dishes.filter(d=>d.category===cat.id);
+      if(!inCat.length) return '';
+      return `<div class="cat-group-title">${cat.ico} ${cat.label}</div>` + inCat.map(dishCardHtml).join('');
+    }).join('');
+  } else {
+    list.innerHTML = dishes.map(dishCardHtml).join('');
+  }
+}
+
+function dishCardHtml(d){
+  const cat = CATS.find(c=>c.id===d.category) || CATS[CATS.length-1];
+  const ings = ingredientsFor(d.id);
+  const isOpen = openDishId===d.id;
+  const ingHtml = ings.length ? ings.map(i=>{
+    const tagClass = i.haveAtHome?'home':'buy';
+    const tagLabel = i.haveAtHome?'יש בבית':'לקנות';
+    return `<div class="ing-row"><span>${esc(i.name)}${i.quantity?` — ${i.quantity}${i.unit?' '+esc(i.unit):''}`:''}</span><span class="tag ${tagClass}">${tagLabel}</span></div>`;
+  }).join('') : `<div class="ing-row" style="color:var(--ink-soft)">עדיין לא הוזנו מצרכים למנה זו</div>`;
+
+  return `
+  <div class="dish-card ${isOpen?'open':''}">
+    <div class="dish-card-top" onclick="toggleDish('${d.id}')">
+      <div class="ico">${cat.ico}</div>
+      <div class="info">
+        <div class="name">${esc(d.name)}</div>
+        <div class="meta">${esc(d.responsible||'—')} · ${ings.length} מצרכים</div>
+      </div>
+      <div class="chev">▾</div>
+    </div>
+    <div class="dish-card-body">
+      <div class="dish-card-inner">
+        ${ingHtml}
+        ${d.notes?`<div class="dish-notes">📝 ${esc(d.notes)}</div>`:''}
+        <div class="dish-actions">
+          <button onclick="event.stopPropagation(); openDishModal('${d.id}')">✏️ עריכה</button>
+          <button onclick="event.stopPropagation(); duplicateDish('${d.id}')">📋 שכפול</button>
+          <button class="danger" onclick="event.stopPropagation(); deleteDish('${d.id}')">🗑️ מחיקה</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+}
+function toggleDish(id){ openDishId = openDishId===id ? null : id; renderMenu(); }
+
+/* ---------- rendering: shopping ---------- */
+function setShopFilter(f){
+  shopFilter=f;
+  document.querySelectorAll('[data-shopfilter]').forEach(b=>b.classList.toggle('active', b.dataset.shopfilter===f));
+  renderShop();
+}
+function renderShop(){
+  const units = shoppingUnits();
+  const purchased = units.filter(u=>u.purchased).length;
+  document.getElementById('shopProgressText').textContent = `נרכשו ${purchased} מתוך ${units.length} מוצרים`;
+  const pct = units.length ? Math.round(purchased/units.length*100) : 0;
+  document.getElementById('shopProgressPct').textContent = pct+'%';
+  document.getElementById('shopProgressBar').style.width = pct+'%';
+
+  let visible = units;
+  if(shopFilter==='remaining') visible = units.filter(u=>!u.purchased);
+  if(shopFilter==='done') visible = units.filter(u=>u.purchased);
+
+  const list = document.getElementById('shopList');
+  if(!visible.length){
+    list.innerHTML = `<div class="empty"><span class="big">🛒</span>${shopFilter==='done'?'עדיין לא נרכש כלום':'הרשימה ריקה כרגע'}</div>`;
+    return;
+  }
+  list.innerHTML = SHOP_CATS.map(cat=>{
+    const inCat = visible.filter(u=>u.category===cat.id);
+    if(!inCat.length) return '';
+    // purchased items sink to bottom within a category
+    inCat.sort((a,b)=> (a.purchased===b.purchased)?0:(a.purchased?1:-1));
+    return `<div class="cat-group"><div class="cat-group-title">${cat.ico} ${cat.label}</div>` +
+      inCat.map(shopItemHtml).join('') + `</div>`;
+  }).join('');
+}
+function shopItemHtml(u){
+  const sub = [];
+  if(u.type==='ingredient' && u.sources.length) sub.push('ל' + u.sources.join(', '));
+  if(u.type==='general') sub.push('קנייה כללית');
+  if(u.purchased && u.purchasedBy) sub.push(`נקנה ע״י ${esc(u.purchasedBy)}${u.purchasedAt?' · '+fmtTime(u.purchasedAt):''}`);
+  return `
+  <div class="shop-item ${u.purchased?'done':''}">
+    <div class="checkbox" onclick="togglePurchased('${u.id}')">${u.purchased?'✓':''}</div>
+    <div class="item-body" onclick="editShopItem('${u.id}')">
+      <div class="item-name">${esc(u.name)}${u.quantity?` — ${fmtQty(u.quantity)}${u.unit?' '+esc(u.unit):''}`:''}</div>
+      ${sub.length?`<div class="item-sub">${sub.join(' · ')}</div>`:''}
+    </div>
+    <button class="item-edit" onclick="editShopItem('${u.id}')">✏️</button>
+  </div>`;
+}
+function fmtQty(n){ n=Number(n); return Number.isInteger(n)?n:n.toFixed(2).replace(/\.?0+$/,''); }
+
+function togglePurchased(unitId){
+  const who = getActiveUser();
+  if(unitId.startsWith('ing:')){
+    const key = unitId.slice(4);
+    const [name,unit] = key.split('|');
+    state.ingredients.filter(i=>!i.haveAtHome && (i.name||'').trim().toLowerCase()===name && (i.unit||'')===unit).forEach(i=>{
+      i.purchased = !i.purchased; i.purchasedBy = i.purchased?who:null; i.purchasedAt = i.purchased?nowIso():null;
+      queueApi('updateIngredient', {id:i.id, purchased:i.purchased, purchasedBy:i.purchasedBy, purchasedAt:i.purchasedAt});
+    });
+  } else {
+    const id = unitId.slice(4);
+    const g = state.general.find(x=>x.id===id);
+    if(g){
+      g.purchased = !g.purchased; g.purchasedBy = g.purchased?who:null; g.purchasedAt = g.purchased?nowIso():null;
+      queueApi('updateGeneral', {id:g.id, purchased:g.purchased, purchasedBy:g.purchasedBy, purchasedAt:g.purchasedAt});
+    }
+  }
+  saveLocal(); renderAll();
+}
+function getActiveUser(){
+  let u = localStorage.getItem('rh_user_name');
+  if(!u){
+    u = prompt('מי אתם? (לרישום מי קנה מה)', 'אבי') || 'אבי';
+    localStorage.setItem('rh_user_name', u);
+  }
+  return u;
+}
+
+function editShopItem(unitId){
+  const units = shoppingUnits();
+  const u = units.find(x=>x.id===unitId);
+  if(!u) return;
+  const autoNote = u.type==='ingredient' ? `<div class="dish-notes">מוצר זה הגיע אוטומטית ${u.sources.length?'מ: '+esc(u.sources.join(', ')):'ממנה בתפריט'}. עריכת הכמות תעדכן את המצרך במנה המקורית.</div>` : '';
+  const html = `
+    <div class="modal-overlay" onclick="if(event.target===this) closeModal()">
+      <div class="modal">
+        <div class="modal-head"><h2>עריכת מוצר</h2><button onclick="closeModal()">✕</button></div>
+        <div class="field-group"><label>שם</label><input id="ei_name" value="${escAttr(u.name)}"></div>
+        <div style="display:flex; gap:8px;">
+          <div class="field-group" style="flex:1"><label>כמות</label><input id="ei_qty" type="number" step="any" value="${u.quantity||''}"></div>
+          <div class="field-group" style="flex:1"><label>יחידה</label><input id="ei_unit" value="${escAttr(u.unit||'')}"></div>
+        </div>
+        <div class="field-group"><label>קטגוריה</label>
+          <select id="ei_cat">${SHOP_CATS.map(c=>`<option value="${c.id}" ${c.id===u.category?'selected':''}>${c.ico} ${c.label}</option>`).join('')}</select>
+        </div>
+        ${autoNote}
+        <button class="btn btn-primary btn-block" style="margin-top:14px" onclick="saveShopItemEdit('${unitId}')">שמירה</button>
+        <button class="btn btn-outline btn-block" style="margin-top:8px; color:var(--apple);" onclick="deleteShopItem('${unitId}')">מחיקת מוצר</button>
+      </div>
+    </div>`;
+  document.getElementById('modalRoot').innerHTML = html;
+}
+function saveShopItemEdit(unitId){
+  const name = document.getElementById('ei_name').value.trim();
+  const qty = parseFloat(document.getElementById('ei_qty').value)||0;
+  const unit = document.getElementById('ei_unit').value.trim();
+  const cat = document.getElementById('ei_cat').value;
+  if(unitId.startsWith('ing:')){
+    const key = unitId.slice(4);
+    const [oldName,oldUnit] = key.split('|');
+    const rows = state.ingredients.filter(i=>!i.haveAtHome && (i.name||'').trim().toLowerCase()===oldName && (i.unit||'')===oldUnit);
+    rows.forEach((i,idx)=>{
+      if(idx===0){ i.quantity = qty; } // keep distribution simple: put merged qty on first row
+      else { i.quantity = 0; }
+      i.name = name; i.unit = unit; i.shoppingCategory = cat;
+      queueApi('updateIngredient', {id:i.id, name:i.name, unit:i.unit, quantity:i.quantity, shoppingCategory:cat});
+    });
+  } else {
+    const id = unitId.slice(4);
+    const g = state.general.find(x=>x.id===id);
+    if(g){ g.name=name; g.quantity=qty; g.unit=unit; g.category=cat; queueApi('updateGeneral', g); }
+  }
+  saveLocal(); closeModal(); renderAll();
+}
+function deleteShopItem(unitId){
+  if(!confirm('למחוק את המוצר?')) return;
+  if(unitId.startsWith('ing:')){
+    const key = unitId.slice(4);
+    const [name,unit] = key.split('|');
+    const ids = state.ingredients.filter(i=>!i.haveAtHome && (i.name||'').trim().toLowerCase()===name && (i.unit||'')===unit).map(i=>i.id);
+    state.ingredients = state.ingredients.filter(i=>!ids.includes(i.id));
+    ids.forEach(id=>queueApi('deleteIngredient', {id}));
+  } else {
+    const id = unitId.slice(4);
+    state.general = state.general.filter(g=>g.id!==id);
+    queueApi('deleteGeneral', {id});
+  }
+  saveLocal(); closeModal(); renderAll();
+}
+
+/* ---------- dish modal (create/edit) ---------- */
+let editingIngredients = [];
+function openDishModal(dishId){
+  const d = dishId ? dishById(dishId) : null;
+  editingIngredients = d ? ingredientsFor(d.id).map(i=>({...i})) : [];
+  const html = `
+  <div class="modal-overlay" onclick="if(event.target===this) closeModal()">
+    <div class="modal">
+      <div class="modal-head"><h2>${d?'עריכת מנה':'הוספת מנה'}</h2><button onclick="closeModal()">✕</button></div>
+      <div class="field-group"><label>שם המנה</label><input id="dm_name" placeholder="לדוגמה: דגים מרוקאיים" value="${d?escAttr(d.name):''}"></div>
+      <div class="field-group"><label>קטגוריה</label>
+        <select id="dm_cat">${CATS.map(c=>`<option value="${c.id}" ${d&&d.category===c.id?'selected':''}>${c.ico} ${c.label}</option>`).join('')}</select>
+      </div>
+      <div class="field-group"><label>מי מכין?</label>
+        <select id="dm_resp">${RESPONSIBLE.map(r=>`<option ${d&&d.responsible===r?'selected':''}>${r}</option>`).join('')}</select>
+      </div>
+      <div class="field-group"><label>הערות</label><textarea id="dm_notes" rows="2" placeholder="לדוגמה: להכין יום לפני">${d?esc(d.notes||''):''}</textarea></div>
+
+      <div class="field-group">
+        <label>מצרכים</label>
+        <div id="ingEditList"></div>
+        <button type="button" class="add-ing-btn" onclick="addIngredientRow()">＋ הוסף מצרך</button>
+      </div>
+
+      <button class="btn btn-primary btn-block" style="margin-top:8px" onclick="saveDish('${d?d.id:''}')">שמירת מנה</button>
+    </div>
+  </div>`;
+  document.getElementById('modalRoot').innerHTML = html;
+  renderIngEditList();
+}
+function renderIngEditList(){
+  const el = document.getElementById('ingEditList');
+  if(!editingIngredients.length){
+    el.innerHTML = '';
+    return;
+  }
+  el.innerHTML = editingIngredients.map((i,idx)=>`
+    <div class="ing-edit-row">
+      <input placeholder="שם מצרך" value="${escAttr(i.name||'')}" oninput="editingIngredients[${idx}].name=this.value">
+      <input type="number" step="any" placeholder="כמות" value="${i.quantity||''}" oninput="editingIngredients[${idx}].quantity=this.value">
+      <input placeholder="יחידה" value="${escAttr(i.unit||'')}" oninput="editingIngredients[${idx}].unit=this.value">
+      <div style="display:flex; gap:3px;">
+        <button type="button" class="ing-toggle ${i.haveAtHome?'home':'buy'}" onclick="toggleIngHome(${idx})">${i.haveAtHome?'יש בבית':'לקנות'}</button>
+        <button type="button" class="ing-del" onclick="removeIngRow(${idx})">✕</button>
+      </div>
+    </div>
+  `).join('');
+}
+function addIngredientRow(){
+  editingIngredients.push({id:uid(), name:'', quantity:'', unit:'', haveAtHome:false, shoppingCategory:'other'});
+  renderIngEditList();
+}
+function toggleIngHome(idx){ editingIngredients[idx].haveAtHome = !editingIngredients[idx].haveAtHome; renderIngEditList(); }
+function removeIngRow(idx){ editingIngredients.splice(idx,1); renderIngEditList(); }
+
+function saveDish(dishId){
+  const name = document.getElementById('dm_name').value.trim();
+  if(!name){ toast('צריך להזין שם למנה'); return; }
+  const category = document.getElementById('dm_cat').value;
+  const responsible = document.getElementById('dm_resp').value;
+  const notes = document.getElementById('dm_notes').value.trim();
+  const cleanIngs = editingIngredients.filter(i=>i.name && i.name.trim());
+
+  if(dishId){
+    const d = dishById(dishId);
+    Object.assign(d, {name,category,responsible,notes,updatedAt:nowIso()});
+    queueApi('updateDish', d);
+    // replace ingredients for this dish
+    const oldIds = ingredientsFor(dishId).map(i=>i.id);
+    oldIds.forEach(id=>queueApi('deleteIngredient', {id}));
+    state.ingredients = state.ingredients.filter(i=>i.dishId!==dishId);
+    cleanIngs.forEach(i=>{
+      const row = {id:uid(), dishId, name:i.name.trim(), quantity:i.quantity||0, unit:i.unit||'', haveAtHome:!!i.haveAtHome, shoppingCategory:guessShopCat(i.name)};
+      state.ingredients.push(row);
+      queueApi('createIngredient', row);
+    });
+  } else {
+    const id = uid();
+    const d = {id, name, category, responsible, notes, createdAt:nowIso(), updatedAt:nowIso()};
+    state.dishes.push(d);
+    queueApi('createDish', d);
+    cleanIngs.forEach(i=>{
+      const row = {id:uid(), dishId:id, name:i.name.trim(), quantity:i.quantity||0, unit:i.unit||'', haveAtHome:!!i.haveAtHome, shoppingCategory:guessShopCat(i.name)};
+      state.ingredients.push(row);
+      queueApi('createIngredient', row);
+    });
+  }
+  saveLocal(); closeModal(); renderAll();
+  toast('המנה נשמרה');
+}
+function guessShopCat(name){
+  const n=(name||'').toLowerCase();
+  const map = [
+    [['עגבני','מלפפון','שום','בצל','חסה','פלפל','פרי','ירק','לימון','תפוח','גזר'],'produce'],
+    [['דג','בשר','עוף','טחון','כבש'],'meatfish'],
+    [['חלב','גבינה','שמנת','יוגורט','חמאה'],'dairy'],
+    [['שמן','אורז','קמח','סוכר','תבלין','רוטב','קופסת שימורים','טחינה'],'pantry'],
+    [['לחם','חלה','פיתה','בורקס'],'bakery'],
+    [['מיץ','קולה','מים','יין','בירה','שתייה'],'drinks'],
+    [['קפוא'],'frozen'],
+    [['נייר','שקית','ניקוי','מגבון'],'household'],
+    [['חד פעמי','צלחות','מפיות','כוסות','נר'],'disposable'],
+  ];
+  for(const [words,cat] of map){ if(words.some(w=>n.includes(w))) return cat; }
+  return 'other';
+}
+function duplicateDish(dishId){
+  const d = dishById(dishId);
+  if(!d) return;
+  const newId = uid();
+  const copy = {...d, id:newId, name:d.name+' (עותק)', createdAt:nowIso(), updatedAt:nowIso()};
+  state.dishes.push(copy);
+  queueApi('createDish', copy);
+  ingredientsFor(dishId).forEach(i=>{
+    const row = {...i, id:uid(), dishId:newId};
+    state.ingredients.push(row);
+    queueApi('createIngredient', row);
+  });
+  saveLocal(); renderAll(); toast('המנה שוכפלה');
+}
+function deleteDish(dishId){
+  if(!confirm('למחוק את המנה וכל המצרכים שלה?')) return;
+  ingredientsFor(dishId).forEach(i=>queueApi('deleteIngredient', {id:i.id}));
+  state.ingredients = state.ingredients.filter(i=>i.dishId!==dishId);
+  state.dishes = state.dishes.filter(d=>d.id!==dishId);
+  queueApi('deleteDish', {id:dishId});
+  saveLocal(); renderAll(); toast('המנה נמחקה');
+}
+
+/* ---------- general item modal ---------- */
+function openGeneralModal(){
+  const html = `
+  <div class="modal-overlay" onclick="if(event.target===this) closeModal()">
+    <div class="modal">
+      <div class="modal-head"><h2>הוספת מוצר לרשימה</h2><button onclick="closeModal()">✕</button></div>
+      <div class="field-group"><label>שם המוצר</label><input id="gm_name" placeholder="לדוגמה: נייר כסף"></div>
+      <div style="display:flex; gap:8px;">
+        <div class="field-group" style="flex:1"><label>כמות</label><input id="gm_qty" type="number" step="any" placeholder="1"></div>
+        <div class="field-group" style="flex:1"><label>יחידה</label><input id="gm_unit" placeholder="יחידות"></div>
+      </div>
+      <div class="field-group"><label>קטגוריה</label>
+        <select id="gm_cat">${SHOP_CATS.map(c=>`<option value="${c.id}">${c.ico} ${c.label}</option>`).join('')}</select>
+      </div>
+      <button class="btn btn-primary btn-block" onclick="saveGeneralItem()">הוספה לרשימה</button>
+    </div>
+  </div>`;
+  document.getElementById('modalRoot').innerHTML = html;
+}
+function saveGeneralItem(){
+  const name = document.getElementById('gm_name').value.trim();
+  if(!name){ toast('צריך להזין שם מוצר'); return; }
+  const g = {
+    id:uid(), name, quantity:parseFloat(document.getElementById('gm_qty').value)||0,
+    unit:document.getElementById('gm_unit').value.trim(), category:document.getElementById('gm_cat').value,
+    notes:'', purchased:false, purchasedBy:null, purchasedAt:null, createdAt:nowIso()
+  };
+  state.general.push(g);
+  queueApi('createGeneral', g);
+  saveLocal(); closeModal(); renderAll(); toast('נוסף לרשימת הקניות');
+}
+
+function closeModal(){ document.getElementById('modalRoot').innerHTML=''; }
+
+/* ---------- admin actions ---------- */
+function resetPurchased(){
+  if(!confirm('לאפס את כל סימוני "נקנה"?')) return;
+  state.ingredients.forEach(i=>{ i.purchased=false; i.purchasedBy=null; i.purchasedAt=null; queueApi('updateIngredient', {id:i.id, purchased:false, purchasedBy:null, purchasedAt:null}); });
+  state.general.forEach(g=>{ g.purchased=false; g.purchasedBy=null; g.purchasedAt=null; queueApi('updateGeneral', {id:g.id, purchased:false, purchasedBy:null, purchasedAt:null}); });
+  saveLocal(); renderAll(); toast('הסימונים אופסו');
+}
+function clearAllData(){
+  if(!confirm('פעולה זו תמחק את כל המנות, המצרכים והקניות. להמשיך?')) return;
+  if(!confirm('בטוחים לגמרי? אין דרך חזרה.')) return;
+  state = {dishes:[], ingredients:[], general:[], lastSync:state.lastSync};
+  queueApi('clearAll', {});
+  saveLocal(); renderAll(); toast('הכול נמחק');
+}
+function exportWhatsapp(){
+  const units = shoppingUnits().filter(u=>!u.purchased);
+  let text = '🛒 קניות לראש השנה\\n\\n';
+  SHOP_CATS.forEach(cat=>{
+    const inCat = units.filter(u=>u.category===cat.id);
+    if(!inCat.length) return;
+    text += `${cat.ico} ${cat.label}\\n`;
+    inCat.forEach(u=> text += `• ${u.name}${u.quantity?` – ${fmtQty(u.quantity)}${u.unit?' '+u.unit:''}`:''}\\n`);
+    text += '\\n';
+  });
+  navigator.clipboard && navigator.clipboard.writeText(text).then(()=>toast('רשימת הקניות הועתקה')).catch(()=>fallbackCopy(text));
+  if(!navigator.clipboard) fallbackCopy(text);
+}
+function fallbackCopy(text){
+  const ta=document.createElement('textarea'); ta.value=text; document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); toast('רשימת הקניות הועתקה'); }catch(e){ toast('לא הצלחתי להעתיק, נסו שוב'); }
+  ta.remove();
+}
+function saveApiUrl(){
+  apiUrl = document.getElementById('apiUrlInput').value.trim();
+  localStorage.setItem(LS_URL_KEY, apiUrl);
+  toast('הכתובת נשמרה');
+  syncNow(true);
+}
+
+/* ---------- sync layer ---------- */
+let pendingQueue = [];
+function queueApi(action, payload){
+  if(!apiUrl) return;
+  pendingQueue.push({action, payload});
+  flushQueue();
+}
+let flushing = false;
+async function flushQueue(){
+  if(flushing || !pendingQueue.length || !apiUrl) return;
+  flushing = true;
+  setSyncStatus('syncing');
+  while(pendingQueue.length){
+    const job = pendingQueue[0];
+    try{
+      await fetch(apiUrl, {method:'POST', body: JSON.stringify(job)});
+      pendingQueue.shift();
+    }catch(e){
+      console.warn('sync failed, will retry', e);
+      setSyncStatus('error');
+      flushing = false;
+      return;
+    }
+  }
+  setSyncStatus('ok');
+  flushing = false;
+}
+async function syncNow(manual){
+  if(!apiUrl){ if(manual) toast('הזינו כתובת Web App במסך הניהול כדי לסנכרן'); return; }
+  if(syncing) return;
+  syncing = true;
+  setSyncStatus('syncing');
+  try{
+    const res = await fetch(apiUrl+'?action=getAll');
+    const data = await res.json();
+    if(data && data.ok){
+      state.dishes = data.dishes||[];
+      state.ingredients = data.ingredients||[];
+      state.general = data.general||[];
+      state.lastSync = nowIso();
+      saveLocal();
+      renderAll();
+      setSyncStatus('ok');
+    } else {
+      setSyncStatus('error');
+    }
+  }catch(e){
+    console.warn('fetch failed', e);
+    setSyncStatus('error');
+  }
+  syncing = false;
+}
+function setSyncStatus(s){
+  const pill = document.getElementById('syncPill');
+  const text = document.getElementById('syncText');
+  pill.classList.toggle('err', s==='error');
+  if(s==='syncing') text.textContent='מסנכרן…';
+  else if(s==='error') text.textContent = apiUrl ? 'שגיאת סנכרון' : 'לא מחובר';
+  else text.textContent = apiUrl ? 'מסונכרן' : 'מקומי בלבד';
+}
+
+/* ---------- helpers ---------- */
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"']/g, m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function escAttr(s){ return esc(s); }
+function fmtTime(iso){
+  try{ const d=new Date(iso); return d.toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'}); }catch(e){ return ''; }
+}
+function toast(msg){
+  const root = document.getElementById('toastRoot');
+  root.innerHTML = `<div class="toast">${esc(msg)}</div>`;
+  setTimeout(()=>{ root.innerHTML=''; }, 2400);
+}
+function closeSplash(){
+  document.getElementById('splash').style.display='none';
+}
+
+/* ---------- nav ---------- */
+function goTo(screen){
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+screen).classList.add('active');
+  document.querySelectorAll('nav.bottom-nav button').forEach(b=>b.classList.toggle('active', b.dataset.screen===screen));
+  window.scrollTo(0,0);
+  if(screen==='menu') renderMenu();
+  if(screen==='shop') renderShop();
+}
+
+function renderAll(){
+  renderDashboard();
+  renderMenuFilters();
+  renderMenu();
+  renderShop();
+}
+
+/* ---------- init ---------- */
+function init(){
+  loadLocal();
+  seedIfEmpty();
+  document.getElementById('apiUrlInput').value = apiUrl;
+  setSyncStatus(apiUrl?'ok':'error');
+  renderAll();
+  if(apiUrl) syncNow();
+  setInterval(()=>{ if(apiUrl && document.visibilityState==='visible') syncNow(); }, 15000);
+  document.addEventListener('visibilitychange', ()=>{ if(document.visibilityState==='visible' && apiUrl) syncNow(); });
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('service-worker.js').catch(()=>{});
+  }
+}
+init();
+</script>
+</body>
+</html>
